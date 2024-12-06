@@ -25,6 +25,10 @@ class UserPolicy
 
 
 
+    public function accessOrders(User $user){
+        return in_array($user->role, ['manager', 'chef']);
+    }
+
 
     public function viewAny(User $user): bool
     {
