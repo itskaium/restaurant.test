@@ -54,6 +54,6 @@ require __DIR__.'/auth.php';
 
 
     Route::get('/myorder', [OrderController::class, 'myorder_front']);
-    Route::get('/orders', [OrderController::class, 'index'])->middleware('can:isManager', 'can:isChef');
+    Route::get('/orders', [OrderController::class, 'index'])->middleware('can:isManager');
     Route::get('/onTheWay/{id}', [OrderController::class, 'onTheWay']);
     Route::get('/delivered/{id}', [OrderController::class, 'delivered']);
