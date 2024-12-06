@@ -26,24 +26,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['role:manager'])->group(function () {
 
-    Route::get('/manager', [ManagerController::class, 'index'])->name('manager');
+    Route::get('/manager', [ManagerController::class, 'index'])->name('manager')->middleware('can:isManager');
 
-});
+    Route::get('/chef', [ChefController::class, 'index'])->name('chef')->middleware('can:isChef');
 
-Route::middleware(['role:chef'])->group(function () {
-
-    Route::get('/chef', [ChefController::class, 'index'])->name('chef');
-
-});
+    Route::get('/waiter', [WaiterController::class, 'index'])->name('waiter')->middleware('can:isWaiter');
 
 
-Route::middleware(['role:chef'])->group(function () {
-
-    Route::get('/waiter', [WaiterController::class, 'index'])->name('waiter');
-    
-});
 
     Route::get('/category', [CategoryController::class, 'index']);
     Route::post('/category', [CategoryController::class, 'store']);
@@ -64,6 +54,6 @@ Route::middleware(['role:chef'])->group(function () {
 
 
     Route::get('/myorder', [OrderController::class, 'myorder_front']);
-    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders', [OrderController::class, 'index'])->middleware('can:isManager', 'can:isChef');
     Route::get('/onTheWay/{id}', [OrderController::class, 'onTheWay']);
     Route::get('/delivered/{id}', [OrderController::class, 'delivered']);

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
 {
     public function index(){
+
         $orders = Order::all();
         return view('manager.order.index', compact('orders'));
     }
