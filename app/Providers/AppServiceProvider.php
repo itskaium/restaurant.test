@@ -25,14 +25,8 @@ class AppServiceProvider extends ServiceProvider
 
 
         //Policy
-
-        Gate::define('isManager', [UserPolicy::class, 'isManager']);
-
-        Gate::define('isChef', [UserPolicy::class, 'isChef']);
         
-        Gate::define('isWaiter', [UserPolicy::class, 'isWaiter']);
-
-        Gate::define('accessOrders', [UserPolicy::class, 'accessOrders']);
+        Gate::policy(User::class, UserPolicy::class);
 
 
 

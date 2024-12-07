@@ -25,14 +25,26 @@ class UserPolicy
 
 
 
-    public function accessOrders(User $user){
-        return in_array($user->role, ['manager', 'chef']);
-    }
-
-
     public function viewAny(User $user): bool
     {
-        //
+        // if ($user->role === 'manager') {
+
+        //     return $user->role === 'manager';
+
+        // } elseif ($user->role === 'chef') {
+
+        //     return $user->role === 'chef';
+
+        // } elseif ($user->role === 'waiter') {
+
+        //     return $user->role === 'waiter';
+
+        // } else {
+            
+        //     return false;
+        // }
+        return in_array($user->role, ['manager', 'chef']);
+        
     }
 
     /**
@@ -40,7 +52,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -48,7 +60,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -56,7 +68,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -64,7 +76,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -72,7 +84,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -80,6 +92,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): bool
     {
-        //
+        return false;
     }
 }
